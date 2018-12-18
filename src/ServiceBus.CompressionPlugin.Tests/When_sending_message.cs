@@ -57,7 +57,12 @@
             var result = await plugin.BeforeMessageSend(message);
 
             var bodyAsBase64String = Convert.ToBase64String(result.Body);
+
+#if NETFRAMEWORK
             Assert.Equal("H4sIAAAAAAAEAHN0HAWjYBSMglEw3AAATW9s69wFAAA=", bodyAsBase64String);
+#else
+            Assert.Equal("H4sIAAAAAAAAC3N0HAWjITAaAqMhMBoCjsMMAABNb2zr3AUAAA==", bodyAsBase64String);
+#endif
             Assert.Equal("GZip", message.UserProperties[Headers.CompressionMethodName]);
             Assert.Equal(payload.Length, message.UserProperties[Headers.OriginalBodySize]);
         }
