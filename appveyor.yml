@@ -64,12 +64,10 @@ notifications:
 #     deployment configuration    #
 #---------------------------------#
 
-## generate and encrypt when a package is uploaded at least once
-
 deploy:
   provider: NuGet
   api_key:
-    secure: V0wf6IZuvS9d8cJrjEopB+2/4i1z4TrlUhC27y9r+RRt+HYhtxNwK9E+Htkm76bi # encrypted ServiceBus.CompressionPlugin API key
+    secure: zizolj6oUJ347FHCvwpIYIxrs115ZruUY5oHtox3Pl4eaFCR9T3C51cyfscReHAm # encrypted ServiceBus.CompressionPlugin API key
   artifact: /.*\.nupkg/
   on:
     branch: master
