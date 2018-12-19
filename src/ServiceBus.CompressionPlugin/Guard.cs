@@ -1,4 +1,4 @@
-﻿namespace ServiceBus
+﻿namespace ServiceBus.CompressionPlugin
 {
     using System;
 

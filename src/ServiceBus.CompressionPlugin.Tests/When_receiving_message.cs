@@ -1,6 +1,7 @@
 ﻿namespace ServiceBus.Tests
 {
     using System.Threading.Tasks;
+    using CompressionPlugin;
     using Microsoft.Azure.ServiceBus;
     using Xunit;
 

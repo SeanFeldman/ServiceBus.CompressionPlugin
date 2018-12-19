@@ -3,6 +3,7 @@
     using System;
     using System.Text;
     using System.Threading.Tasks;
+    using CompressionPlugin;
     using Microsoft.Azure.ServiceBus;
     using Xunit;
 

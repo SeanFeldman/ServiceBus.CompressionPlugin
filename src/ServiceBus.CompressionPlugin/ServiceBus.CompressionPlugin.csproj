@@ -18,7 +18,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <AssemblyName>ServiceBus.CompressionPlugin</AssemblyName>
-    <RootNamespace>ServiceBus</RootNamespace>
+    <RootNamespace>ServiceBus.CompressionPlugin</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

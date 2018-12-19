@@ -1,4 +1,4 @@
-﻿namespace ServiceBus
+﻿namespace ServiceBus.CompressionPlugin
 {
     using Microsoft.Azure.ServiceBus;
     using Microsoft.Azure.ServiceBus.Core;
