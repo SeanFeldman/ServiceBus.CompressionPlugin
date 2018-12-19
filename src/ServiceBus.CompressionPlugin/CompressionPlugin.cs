@@ -37,6 +37,7 @@
             message.Body = await configuration.Compressor(message.Body).ConfigureAwait(false);
 
             message.UserProperties[Headers.CompressionMethodName] = configuration.CompressionMethodName;
+            message.UserProperties[Headers.CompressedBodySize] = message.Body.Length;
 
             return message;
         }
