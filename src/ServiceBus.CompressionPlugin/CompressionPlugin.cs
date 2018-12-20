@@ -19,43 +19,43 @@
 
         public override bool ShouldContinueOnException { get; } = false;
 
-        public override async Task<Message> BeforeMessageSend(Message message)
+        public override Task<Message> BeforeMessageSend(Message message)
         {
             if (message.Body == null || message.Body.Length == 0)
             {
-                return message;
+                return Task.FromResult(message);
             }
 
             // min size should be configurable
             if (message.Body.Length < configuration.MinimumSize)
             {
-                return message;
+                return Task.FromResult(message);
             }
 
             message.UserProperties[Headers.OriginalBodySize] = message.Body.Length;
 
-            message.Body = await configuration.Compressor(message.Body).ConfigureAwait(false);
+            message.Body = configuration.Compressor(message.Body);
 
             message.UserProperties[Headers.CompressionMethodName] = configuration.CompressionMethodName;
             message.UserProperties[Headers.CompressedBodySize] = message.Body.Length;
 
-            return message;
+            return Task.FromResult(message);
         }
 
-        public override async Task<Message> AfterMessageReceive(Message message)
+        public override Task<Message> AfterMessageReceive(Message message)
         {
             if (message.Body == null || message.Body.Length == 0)
             {
-                return message;
+                return Task.FromResult(message);
             }
 
             if (!message.UserProperties.TryGetValue(Headers.CompressionMethodName, out var methodName) || (string)methodName != configuration.CompressionMethodName)
             {
-                return message;
+                return Task.FromResult(message);
             }
 
-            message.Body = await configuration.Decompressor(message.Body).ConfigureAwait(false);
-            return message;
+            message.Body = configuration.Decompressor(message.Body);
+            return Task.FromResult(message);
         }
     }
 }

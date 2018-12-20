@@ -36,11 +36,11 @@
             var receivePlugin = new CompressionPlugin(
                 new CompressionConfiguration(
                     "noop",
-                    Task.FromResult,
+                    bytes => bytes,
                     bytes =>
                     {
                         decompressorExecuted = true;
-                        return Task.FromResult(bytes);
+                        return bytes;
                     },
                     1));
 
@@ -59,11 +59,11 @@
             var receivePlugin = new CompressionPlugin(
                 new CompressionConfiguration(
                     "noop",
-                    Task.FromResult,
+                    bytes => bytes,
                     bytes =>
                     {
                         decompressorExecuted = true;
-                        return Task.FromResult(bytes);
+                        return bytes;
                     },
                     1));
 
