@@ -1,9 +1,9 @@
-﻿namespace ServiceBus.Tests
+﻿namespace ServiceBus.CompressionPlugin.Tests
 {
     using System;
     using System.Threading.Tasks;
-    using CompressionPlugin;
     using Microsoft.Azure.ServiceBus;
+    using ServiceBus.CompressionPlugin;
     using Xunit;
 
     public class When_compression_plugin_is_misconfigured
