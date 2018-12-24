@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>netcoreapp2.1;net461</TargetFrameworks>
     <RootNamespace>ServiceBus.CompressionPlugin.Tests</RootNamespace>
+    <Optimize>false</Optimize>
   </PropertyGroup>
 
   <ItemGroup>
