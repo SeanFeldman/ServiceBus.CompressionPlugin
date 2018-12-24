@@ -1,8 +1,8 @@
-﻿namespace ServiceBus.Tests
+﻿namespace ServiceBus.CompressionPlugin.Tests
 {
     using System.Threading.Tasks;
-    using CompressionPlugin;
     using Microsoft.Azure.ServiceBus;
+    using ServiceBus.CompressionPlugin;
     using Xunit;
 
     public class When_receiving_message
@@ -36,11 +36,11 @@
             var receivePlugin = new CompressionPlugin(
                 new CompressionConfiguration(
                     "noop",
-                    Task.FromResult,
+                    bytes => bytes,
                     bytes =>
                     {
                         decompressorExecuted = true;
-                        return Task.FromResult(bytes);
+                        return bytes;
                     },
                     1));
 
@@ -59,11 +59,11 @@
             var receivePlugin = new CompressionPlugin(
                 new CompressionConfiguration(
                     "noop",
-                    Task.FromResult,
+                    bytes => bytes,
                     bytes =>
                     {
                         decompressorExecuted = true;
-                        return Task.FromResult(bytes);
+                        return bytes;
                     },
                     1));
 

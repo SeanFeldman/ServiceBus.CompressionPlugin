@@ -2,7 +2,7 @@
 {
     using System.IO;
     using System.IO.Compression;
-    using System.Threading.Tasks;
+    using Microsoft.Azure.ServiceBus;
 
     class GzipCompressionConfiguration : CompressionConfiguration
     {
@@ -10,20 +10,20 @@
         {
         }
 
-        static async Task<byte[]> GzipCompressor(byte[] bytes)
+        static byte[] GzipCompressor(byte[] bytes)
         {
             using (var memoryStream = new MemoryStream())
             {
                 using (var gzipStream = new GZipStream(memoryStream, CompressionMode.Compress, true))
                 {
-                    await gzipStream.WriteAsync(bytes, 0, bytes.Length).ConfigureAwait(false);
+                    gzipStream.Write(bytes, 0, bytes.Length);
                 }
 
                 return memoryStream.ToArray();
             }
         }
 
-        static async Task<byte[]> GzipDecompressor(byte[] bytes)
+        static byte[] GzipDecompressor(byte[] bytes)
         {
             using (var gzipStream = new GZipStream(new MemoryStream(bytes), CompressionMode.Decompress))
             {
@@ -34,10 +34,10 @@
                     int count;
                     do
                     {
-                        count = await gzipStream.ReadAsync(buffer, 0, size).ConfigureAwait(false);
+                        count = gzipStream.Read(buffer, 0, size);
                         if (count > 0)
                         {
-                            await memory.WriteAsync(buffer, 0, count).ConfigureAwait(false);
+                            memory.Write(buffer, 0, count);
                         }
                     }
                     while (count > 0);

@@ -1,19 +1,18 @@
-﻿namespace ServiceBus.CompressionPlugin
+﻿namespace Microsoft.Azure.ServiceBus
 {
     using System;
-    using System.Threading.Tasks;
 
-    /// <summary>Runtime configuration for <see cref="CompressionPlugin"/> plugin.</summary>
+    /// <summary>Runtime configuration for Compression plugin.</summary>
     public class CompressionConfiguration
     {
         /// <summary>
-        /// Compression configuration object to customize <see cref="CompressionPlugin"/>.
+        /// Compression configuration object to customize Compression plugin.
         /// </summary>
         /// <param name="compressionMethodName">Compression method name stored as a custom header.</param>
         /// <param name="compressor">Function to compress an array of bytes.</param>
         /// <param name="decompressor">Function to de-compress an array of bytes.</param>
         /// <param name="minimumSize">Minimum size of array for compression to be applied.</param>
-        public CompressionConfiguration(string compressionMethodName, Func<byte[], Task<byte[]>> compressor, Func<byte[], Task<byte[]>> decompressor, int minimumSize)
+        public CompressionConfiguration(string compressionMethodName, Func<byte[], byte[]> compressor, Func<byte[], byte[]> decompressor, int minimumSize)
         {
             Guard.AgainstEmpty(nameof(compressionMethodName), compressionMethodName);
             Guard.AgainstNull(nameof(compressor), compressor);
@@ -28,10 +27,10 @@
 
         internal string CompressionMethodName { get; }
         internal int MinimumSize { get; }
-        internal Func<byte[], Task<byte[]>> Compressor { get; }
-        internal Func<byte[], Task<byte[]>> Decompressor { get; }
+        internal Func<byte[], byte[]> Compressor { get; }
+        internal Func<byte[], byte[]> Decompressor { get; }
 
-        Func<byte[], Task<byte[]>> GetSafeCompressor(Func<byte[], Task<byte[]>> userProvidedCompressor)
+        Func<byte[], byte[]> GetSafeCompressor(Func<byte[], byte[]> userProvidedCompressor)
         {
             return bytes =>
             {
@@ -46,7 +45,7 @@
             };
         }
 
-        Func<byte[], Task<byte[]>> GetSafeDecompressor(Func<byte[], Task<byte[]>> userProvidedDecompressor)
+        Func<byte[], byte[]> GetSafeDecompressor(Func<byte[], byte[]> userProvidedDecompressor)
         {
             return bytes =>
             {
