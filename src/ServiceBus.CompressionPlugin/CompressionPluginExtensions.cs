@@ -1,10 +1,10 @@
-﻿namespace ServiceBus.CompressionPlugin
+﻿namespace Microsoft.Azure.ServiceBus
 {
-    using Microsoft.Azure.ServiceBus;
-    using Microsoft.Azure.ServiceBus.Core;
+    using Core;
+    using global::ServiceBus.CompressionPlugin;
 
     /// <summary>
-    /// <see cref="CompressionPlugin"/> registration options.
+    /// Compression plugin registration options.
     /// </summary>
     public static class CompressionPluginExtensions
     {

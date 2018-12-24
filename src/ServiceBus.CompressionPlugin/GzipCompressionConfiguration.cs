@@ -2,6 +2,7 @@
 {
     using System.IO;
     using System.IO.Compression;
+    using Microsoft.Azure.ServiceBus;
 
     class GzipCompressionConfiguration : CompressionConfiguration
     {

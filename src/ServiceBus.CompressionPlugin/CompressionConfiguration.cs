@@ -1,12 +1,12 @@
-﻿namespace ServiceBus.CompressionPlugin
+﻿namespace Microsoft.Azure.ServiceBus
 {
     using System;
 
-    /// <summary>Runtime configuration for <see cref="CompressionPlugin"/> plugin.</summary>
+    /// <summary>Runtime configuration for Compression plugin.</summary>
     public class CompressionConfiguration
     {
         /// <summary>
-        /// Compression configuration object to customize <see cref="CompressionPlugin"/>.
+        /// Compression configuration object to customize Compression plugin.
         /// </summary>
         /// <param name="compressionMethodName">Compression method name stored as a custom header.</param>
         /// <param name="compressor">Function to compress an array of bytes.</param>
