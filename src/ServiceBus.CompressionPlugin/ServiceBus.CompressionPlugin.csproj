@@ -16,6 +16,7 @@
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <PackageOutputPath Condition="'$(PackageOutputPath)' == ''">..\..\nugets</PackageOutputPath>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     <AssemblyName>ServiceBus.CompressionPlugin</AssemblyName>
     <RootNamespace>ServiceBus.CompressionPlugin</RootNamespace>
