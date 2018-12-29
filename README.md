@@ -8,13 +8,13 @@ Allows sending and receiving compressed messages.
 [![develop](https://img.shields.io/appveyor/ci/seanfeldman/ServiceBus-CompressionPlugin/develop.svg?style=flat-square&branch=develop)](https://ci.appveyor.com/project/seanfeldman/ServiceBus-CompressionPlugin)
 [![opened issues](https://img.shields.io/github/issues-raw/badges/shields/website.svg)](https://github.com/SeanFeldman/ServiceBus.CompressionPlugin/issues)
 
-### Nuget package
+### NuGet package
 
 [![NuGet Status](https://buildstats.info/nuget/ServiceBus.CompressionPlugin?includePreReleases=true)](https://www.nuget.org/packages/ServiceBus.CompressionPlugin/)
 
 Available here http://nuget.org/packages/ServiceBus.CompressionPlugin
 
-To Install from the Nuget Package Manager Console 
+To Install from the NuGet Package Manager Console 
     
     PM> Install-Package ServiceBus.CompressionPlugin
 
@@ -77,6 +77,15 @@ receiver.RegisterCompressionPlugin(configuration);
 var msg = await receiver.ReceiveAsync().ConfigureAwait(false);
 // msg will contain the original payload
 ```
+
+### Transitioning to a different compression
+
+To transition to a different compression, compression callbacks need to be updated.
+
+1. Update `compressor` callback to register a new compression method name.
+1. Update `decompressor` callback to handle the old and the new compression method names.
+1. Drain all messages compressed using the old compression method name.
+1. Update `decompresson` callback to handle the new compression method only.
 
 
 ## Who's trusting this add-in in production
