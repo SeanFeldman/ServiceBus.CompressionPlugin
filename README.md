@@ -48,6 +48,13 @@ var msg = await receiver.ReceiveAsync().ConfigureAwait(false);
 // msg will contain the original payload
 ```
 
+### Overriding minimum body size
+
+```c#
+var sender = new MessageSender(connectionString, queueName);
+sender.RegisterCompressionPlugin(1024); // compress messages using GZip with at least 1024 bytes
+```        
+
 ### Custom compressions
 
 Configuration and registration
