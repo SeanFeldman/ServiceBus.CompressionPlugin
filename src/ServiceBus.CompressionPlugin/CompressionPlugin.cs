@@ -6,7 +6,7 @@
 
     class CompressionPlugin : ServiceBusPlugin
     {
-        CompressionConfiguration configuration;
+        internal CompressionConfiguration configuration;
 
         public CompressionPlugin(CompressionConfiguration configuration)
         {

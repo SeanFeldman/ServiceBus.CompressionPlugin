@@ -7,7 +7,7 @@ namespace Microsoft.Azure.ServiceBus
     }
     public class static CompressionPluginExtensions
     {
-        public static Microsoft.Azure.ServiceBus.Core.ServiceBusPlugin RegisterCompressionPlugin(this Microsoft.Azure.ServiceBus.ClientEntity client) { }
+        public static Microsoft.Azure.ServiceBus.Core.ServiceBusPlugin RegisterCompressionPlugin(this Microsoft.Azure.ServiceBus.ClientEntity client, int minimumSizeToApplyCompression = 1500) { }
         public static Microsoft.Azure.ServiceBus.Core.ServiceBusPlugin RegisterCompressionPlugin(this Microsoft.Azure.ServiceBus.ClientEntity client, Microsoft.Azure.ServiceBus.CompressionConfiguration compressionConfiguration) { }
     }
 }

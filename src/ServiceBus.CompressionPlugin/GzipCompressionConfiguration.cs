@@ -6,7 +6,10 @@
 
     class GzipCompressionConfiguration : CompressionConfiguration
     {
-        public GzipCompressionConfiguration() : base("GZip", GzipCompressor, GzipDecompressor, 1500)
+        public const int MinimumCompressionSize = 1500;
+
+        public GzipCompressionConfiguration(int minimumSizeToApplyCompression = MinimumCompressionSize)
+            : base("GZip", GzipCompressor, GzipDecompressor, minimumSizeToApplyCompression)
         {
         }
 

@@ -11,10 +11,12 @@
         /// <summary>
         /// Register compression plugin.
         /// <remarks>GZip compression will be used.</remarks>
+        /// <param name="client"></param>
+        /// <param name="minimumSizeToApplyCompression">Minimum size of message body for compression to be applied.</param>
         /// </summary>
-        public static ServiceBusPlugin RegisterCompressionPlugin(this ClientEntity client)
+        public static ServiceBusPlugin RegisterCompressionPlugin(this ClientEntity client, int minimumSizeToApplyCompression = GzipCompressionConfiguration.MinimumCompressionSize)
         {
-            return client.RegisterCompressionPlugin(new GzipCompressionConfiguration());
+            return client.RegisterCompressionPlugin(new GzipCompressionConfiguration(minimumSizeToApplyCompression));
         }
 
         /// <summary>
