@@ -1,5 +1,7 @@
 ﻿namespace ServiceBus.CompressionPlugin
 {
+    using System;
+    using System.Collections.Generic;
     using System.IO;
     using System.IO.Compression;
     using Microsoft.Azure.ServiceBus;
@@ -9,7 +11,7 @@
         public const int MinimumCompressionSize = 1500;
 
         public GzipCompressionConfiguration(int minimumSizeToApplyCompression = MinimumCompressionSize)
-            : base("GZip", GzipCompressor, GzipDecompressor, minimumSizeToApplyCompression)
+            : base("GZip", GzipCompressor, minimumSizeToApplyCompression, new Dictionary<string, Func<byte[], byte[]>> { {"GZip", GzipDecompressor} })
         {
         }
 
@@ -28,7 +30,8 @@
 
         static byte[] GzipDecompressor(byte[] bytes)
         {
-            using (var gzipStream = new GZipStream(new MemoryStream(bytes), CompressionMode.Decompress))
+            using (var memoryStream = new MemoryStream(bytes))
+            using (var gzipStream = new GZipStream(memoryStream, CompressionMode.Decompress))
             {
                 const int size = 4096;
                 var buffer = new byte[size];
