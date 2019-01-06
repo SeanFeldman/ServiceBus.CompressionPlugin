@@ -1,6 +1,6 @@
 ![Icon](https://github.com/SeanFeldman/ServiceBus.CompressionPlugin/blob/master/images/project-icon.png)
 
-### This is an add-in for [Microsoft.Azure.ServiceBus client](https://github.com/Azure/azure-service-bus-dotnet/) 
+### This is a plugin for [Microsoft.Azure.ServiceBus client](https://github.com/Azure/azure-service-bus-dotnet/) 
 
 Allows sending and receiving compressed messages.
 
@@ -38,7 +38,6 @@ var payloadAsBytes = Encoding.UTF8.GetBytes(serialized);
 var message = new Message(payloadAsBytes);
 ```
 
-
 Receiving
 
 ```c#
@@ -75,7 +74,6 @@ var payloadAsBytes = Encoding.UTF8.GetBytes(serialized);
 var message = new Message(payloadAsBytes);
 ```
 
-
 Receiving
 
 ```c#
@@ -85,24 +83,25 @@ var msg = await receiver.ReceiveAsync().ConfigureAwait(false);
 // msg will contain the original payload
 ```
 
-### Transitioning to a different compression
+### Transitioning to a different compression or receiving a different compression
 
-To transition to a different compression, compression callbacks need to be updated.
+To transition to a different compression or process messages compressed used a different method, additional decompressors can be registered to ensure messages in flight compressed using older/other methods are handled properly.
 
-1. Update `compressor` callback to register a new compression method name.
-1. Update `decompressor` callback to handle the old and the new compression method names.
-1. Drain all messages compressed using the old compression method name.
-1. Update `decompresson` callback to handle the new compression method only.
+```c#
+configuration = new CompressionConfiguration(/* new version of compression */);
+configuration.AddDecompressor("old compression method name", Func<byte[], byte[]> decompressor);
+configuration.AddDecompressor("other compression method name", Func<byte[], byte[]> decompressor);
+```
 
 
-## Who's trusting this add-in in production
+## Who's trusting this plugin in production
 
 <!--
 ![Microsoft](https://github.com/SeanFeldman/ServiceBus.CompressionPlugin/blob/develop/images/using/microsoft.png)
 ![Codit](https://github.com/SeanFeldman/ServiceBus.CompressionPlugin/blob/master/images/using/Codit.png)
 -->
 
-Proudly list your company here if use this add-in in production
+Proudly list your company here if use this plugin in production
 
 ## Icon
 
