@@ -89,8 +89,8 @@ To transition to a different compression or process messages compressed used a d
 
 ```c#
 configuration = new CompressionConfiguration(/* new version of compression */);
-configuration.AddDecompressor("old compression method name", Func<byte[], byte[]> decompressor);
-configuration.AddDecompressor("other compression method name", Func<byte[], byte[]> decompressor);
+configuration.AddDecompressor(compressionMethodName: "old compression method name", decompressor: bytes => Task.FromResult);
+configuration.AddDecompressor(compressionMethodName: "other compression method name", decompressor: bytes => Task.FromResult);
 ```
 
 
