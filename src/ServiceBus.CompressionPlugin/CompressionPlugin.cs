@@ -6,7 +6,7 @@
 
     class CompressionPlugin : ServiceBusPlugin
     {
-        CompressionConfiguration configuration;
+        internal CompressionConfiguration configuration;
 
         public CompressionPlugin(CompressionConfiguration configuration)
         {
@@ -49,12 +49,13 @@
                 return Task.FromResult(message);
             }
 
-            if (!message.UserProperties.TryGetValue(Headers.CompressionMethodName, out var methodName) || (string)methodName != configuration.CompressionMethodName)
+            if (!message.UserProperties.TryGetValue(Headers.CompressionMethodName, out var methodName))
             {
                 return Task.FromResult(message);
             }
 
-            message.Body = configuration.Decompressor(message.Body);
+            message.Body = configuration.Decompressors((string) methodName, message.Body);
+
             return Task.FromResult(message);
         }
     }

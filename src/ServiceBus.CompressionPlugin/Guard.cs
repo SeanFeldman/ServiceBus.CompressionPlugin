@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 
 static class Guard
 {
@@ -9,6 +10,7 @@ static class Guard
             throw new ArgumentNullException(argumentName);
         }
     }
+
     public static void AgainstNull(string argumentName, object value)
     {
         if (value == null)
@@ -22,6 +24,14 @@ static class Guard
         if (value <= 0)
         {
             throw new ArgumentException($"Value cannot be negative or zero. Value was: {value}.", argumentName);
+        }
+    }
+
+    public static void GuardAgainstEmptyCollection(string argumentName, ICollection collection)
+    {
+        if (collection != null && collection.Count == 0)
+        {
+            throw new ArgumentException("Collection should not be empty.", argumentName);
         }
     }
 }

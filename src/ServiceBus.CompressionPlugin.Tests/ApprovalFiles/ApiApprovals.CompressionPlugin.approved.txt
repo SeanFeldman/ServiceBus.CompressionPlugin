@@ -3,11 +3,13 @@ namespace Microsoft.Azure.ServiceBus
 {
     public class CompressionConfiguration
     {
-        public CompressionConfiguration(string compressionMethodName, System.Func<byte[], byte[]> compressor, System.Func<byte[], byte[]> decompressor, int minimumSize) { }
+        public CompressionConfiguration(string compressionMethodName, System.Func<byte[], byte[]> compressor, int minimumSize, System.Func<byte[], byte[]> decompressor) { }
+        public CompressionConfiguration(string compressionMethodName, System.Func<byte[], byte[]> compressor, int minimumSize, System.Collections.Generic.Dictionary<string, System.Func<byte[], byte[]>> decompressors) { }
+        public void AddDecompressor(string compressionMethodName, System.Func<byte[], byte[]> decompressor) { }
     }
     public class static CompressionPluginExtensions
     {
-        public static Microsoft.Azure.ServiceBus.Core.ServiceBusPlugin RegisterCompressionPlugin(this Microsoft.Azure.ServiceBus.ClientEntity client) { }
+        public static Microsoft.Azure.ServiceBus.Core.ServiceBusPlugin RegisterCompressionPlugin(this Microsoft.Azure.ServiceBus.ClientEntity client, int minimumSizeToApplyCompression = 1500) { }
         public static Microsoft.Azure.ServiceBus.Core.ServiceBusPlugin RegisterCompressionPlugin(this Microsoft.Azure.ServiceBus.ClientEntity client, Microsoft.Azure.ServiceBus.CompressionConfiguration compressionConfiguration) { }
     }
 }
