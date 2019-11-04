@@ -62,9 +62,12 @@
 #if NETFRAMEWORK
             Assert.Equal("H4sIAAAAAAAEAHN0HAWjYBSMglEw3AAATW9s69wFAAA=", bodyAsBase64String);
             Assert.Equal(32, message.UserProperties[Headers.CompressedBodySize]);
-#else
+#elif NETCOREAPP2_0
             Assert.Equal("H4sIAAAAAAAAC3N0HAWjITAaAqMhMBoCjsMMAABNb2zr3AUAAA==", bodyAsBase64String);
             Assert.Equal(37, message.UserProperties[Headers.CompressedBodySize]);
+#else // NETCOREAPP3_0
+            Assert.Equal("H4sIAAAAAAAACnN0HAWjYBSMglEw3AAATW9s69wFAAA=", bodyAsBase64String);
+            Assert.Equal(32, message.UserProperties[Headers.CompressedBodySize]);
 #endif
             Assert.Equal("GZip", message.UserProperties[Headers.CompressionMethodName]);
             Assert.Equal(payload.Length, message.UserProperties[Headers.OriginalBodySize]);
