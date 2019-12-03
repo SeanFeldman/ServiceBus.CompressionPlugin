@@ -1,15 +1,15 @@
-[assembly: System.Runtime.CompilerServices.InternalsVisibleToAttribute("ServiceBus.CompressionPlugin.Tests")]
+[assembly: System.Runtime.CompilerServices.InternalsVisibleTo("ServiceBus.CompressionPlugin.Tests")]
 namespace Microsoft.Azure.ServiceBus
 {
     public class CompressionConfiguration
     {
-        public CompressionConfiguration(string compressionMethodName, System.Func<byte[], byte[]> compressor, int minimumSize, System.Func<byte[], byte[]> decompressor) { }
         public CompressionConfiguration(string compressionMethodName, System.Func<byte[], byte[]> compressor, int minimumSize, System.Collections.Generic.Dictionary<string, System.Func<byte[], byte[]>> decompressors) { }
+        public CompressionConfiguration(string compressionMethodName, System.Func<byte[], byte[]> compressor, int minimumSize, System.Func<byte[], byte[]> decompressor) { }
         public void AddDecompressor(string compressionMethodName, System.Func<byte[], byte[]> decompressor) { }
     }
-    public class static CompressionPluginExtensions
+    public static class CompressionPluginExtensions
     {
-        public static Microsoft.Azure.ServiceBus.Core.ServiceBusPlugin RegisterCompressionPlugin(this Microsoft.Azure.ServiceBus.ClientEntity client, int minimumSizeToApplyCompression = 1500) { }
         public static Microsoft.Azure.ServiceBus.Core.ServiceBusPlugin RegisterCompressionPlugin(this Microsoft.Azure.ServiceBus.ClientEntity client, Microsoft.Azure.ServiceBus.CompressionConfiguration compressionConfiguration) { }
+        public static Microsoft.Azure.ServiceBus.Core.ServiceBusPlugin RegisterCompressionPlugin(this Microsoft.Azure.ServiceBus.ClientEntity client, int minimumSizeToApplyCompression = 1500) { }
     }
 }
