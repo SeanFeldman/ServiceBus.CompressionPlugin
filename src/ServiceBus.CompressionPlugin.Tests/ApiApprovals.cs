@@ -9,11 +9,15 @@
         [Fact]
         public void CompressionPlugin()
         {
-            var publicApi = ApiGenerator.GeneratePublicApi(typeof(CompressionPlugin).Assembly,
+            var publicApi = typeof(CompressionPlugin).Assembly.GeneratePublicApi(
                 new ApiGeneratorOptions
                 {
-                    WhitelistedNamespacePrefixes = new[] { "Microsoft.Azure.ServiceBus." },
-                    ExcludeAttributes = new[] { "System.Runtime.Versioning.TargetFrameworkAttribute" }
+                    WhitelistedNamespacePrefixes = new[] {"Microsoft.Azure.ServiceBus."},
+                    ExcludeAttributes = new[]
+                    {
+                        "System.Runtime.Versioning.TargetFrameworkAttribute",
+                        "System.Reflection.AssemblyMetadataAttribute"
+                    }
                 });
 
             Approver.Verify(publicApi);
