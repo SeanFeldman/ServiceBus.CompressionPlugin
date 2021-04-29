@@ -1,0 +1,28 @@
+version: 2
+updates:
+- package-ecosystem: nuget
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "00:00"
+    timezone: Etc/UCT
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: Microsoft.Azure.ServiceBus
+    versions:
+    - ">= 3.a, < 4"
+  - dependency-name: Microsoft.Azure.ServiceBus
+    versions:
+    - ">= 4.a, < 5"
+  - dependency-name: Microsoft.Azure.ServiceBus
+    versions:
+    - ">= 5.a, < 6"
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - "> 16.8.0, < 16.9"
+  - dependency-name: PublicApiGenerator
+    versions:
+    - "> 10.0.0, < 10.1"
+  - dependency-name: Microsoft.NET.Test.Sdk
+    versions:
+    - 16.9.1
